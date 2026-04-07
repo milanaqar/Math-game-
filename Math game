@@ -1,1 +1,24 @@
 # Python Project: Math Game
+import random
+
+# Menu unpolished
+choice = input("--------- Math Game ---------\n"
+                     "1. Έναρξη παιχνιδιού\n"
+                     "2. Οδηγίες\n"
+                     "3. Έξοδος\n"
+                     "Επιλέξτε 1-3: ")
+
+# Only + for now and without rouds message
+if choice == '1':
+    score = 0
+    for i in range(10):
+        num1 = random.randint(1, 20)
+        num2 = random.randint(1, 20)
+        answer = int(input(f"Πόσο κάνει {num1} + {num2}: "))
+        if answer == num1 + num2:
+            print("Σωστά!")
+            score += 1
+        else:
+            print(f"Λάθος! Η σωστή απάντηση είναι {num1 + num2}.")
+    print(f"Το τελικό σου σκορ είναι: {score}/10")
+
