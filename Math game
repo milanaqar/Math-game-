@@ -8,17 +8,33 @@ choice = input("--------- Math Game ---------\n"
                      "3. Έξοδος\n"
                      "Επιλέξτε 1-3: ")
 
-# Only + for now and without rouds message
+# All operations with rounds message
+# add funtion
 if choice == '1':
     score = 0
-    for i in range(10):
+    for i in range(1,11):
+        operation = random.choice(['+', '-', '*',])
         num1 = random.randint(1, 20)
         num2 = random.randint(1, 20)
-        answer = int(input(f"Πόσο κάνει {num1} + {num2}: "))
-        if answer == num1 + num2:
+        print(f"Γύρος: {i}/10")
+        answer = int(input(f"Πόσο κάνει {num1} {operation} {num2}: "))
+        if operation == '+':
+            correct_answer = num1 + num2
+        elif operation == '-':
+            correct_answer = num1 - num2
+        elif operation == '*':
+            correct_answer = num1 * num2
+        if answer == correct_answer:
             print("✅ Σωστά!")
             score += 1
         else:
-            print(f"❌ Λάθος! Η σωστή απάντηση είναι {num1 + num2}.")
-    print(f"Το τελικό σου σκορ είναι: {score}/10")
+            print(f"❌ Λάθος! Η σωστή απάντηση είναι {correct_answer}.")
+    print(f"⭐ Το τελικό σου σκορ είναι: {score}/10")
 
+# Instructions unpolished
+# add spaces and title
+if choice == '2':
+    print("Το παιχνίδι έχει 10 γύρους.\n" 
+    "Σε κάθε γύρο εμφανίζεται μία μαθηματική πράξη.\n" 
+    "Αν απαντήσεις σωστά, παίρνεις 1 πόντο.\n" 
+    "Στο τέλος εμφανίζεται το συνολικό σου σκορ.")
