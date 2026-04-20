@@ -60,4 +60,3 @@ def show_instructions():
 
 main_menu()
 
-# Comment for future improvements:
