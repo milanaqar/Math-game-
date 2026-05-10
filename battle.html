@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Odyssey – Battle</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Pixel + Simple Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+
+    <!-- Your CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="container py-5 my-4">
+
+    <!-- LANGUAGE BUTTONS -->
+    <div class="d-flex justify-content-end gap-2 mb-3">
+        <button onclick="setLang('en')" id="btn-en" class="pixel-btn-lang">EN</button>
+        <button onclick="setLang('gr')" id="btn-gr" class="pixel-btn-lang">GR</button>
+    </div>
+
+    <!-- MAIN CARD -->
+    <div class="container mx-auto text-center d-flex flex-column" style="max-width: 680px; min-height: 80vh;">
+
+        <div id="wrapper" class="d-flex flex-column" style="min-height: 75vh;">
+
+            <!-- ⭐ ENGLISH BLOCK -->
+            <div id="en-block" style="display:none;">
+
+                <h1 class="mb-4 fw-bold">Battle Round</h1>
+
+                <p class="mb-3" id="round-en">Round: 1 / 10</p>
+
+                <p class="mb-4" id="question-en">What is 5 + 7?</p>
+
+<input type="number" class="pixel-input mb-3" placeholder="Your answer" id="answer-en">
+<div class="mt-4">
+<button class="pixel-btn btn-easy mb-4">Submit</button>
+</div>
+
+    
+            </div>
+
+            <!-- ⭐ GREEK BLOCK -->
+            <div id="gr-block">
+
+                <h1 class="mb-4 fw-bold">Γύρος Μάχης</h1>
+
+                <p class="mb-3" id="round-gr">Γύρος: 1 / 10</p>
+
+                <p class="mb-4" id="question-gr">Πόσο κάνει 5 + 7;</p>
+
+   <input type="number" class="pixel-input mb-5" placeholder="Η απάντησή σου" id="answer-gr">
+<div class="mt-1">
+<button class="pixel-btn btn-easy mb-4">Υποβολή</button>
+</div>
+
+ 
+            </div>
+
+        </div>
+    </div>
+
+<script>
+function setLang(lang) {
+    localStorage.setItem("lang", lang);
+    applyLang();
+}
+
+function applyLang() {
+    const lang = localStorage.getItem("lang") || "gr";
+
+    document.getElementById("en-block").style.display = lang === "en" ? "block" : "none";
+    document.getElementById("gr-block").style.display = lang === "gr" ? "block" : "none";
+
+    document.getElementById("btn-en").classList.toggle("pixel-btn-lang-active", lang === "en");
+    document.getElementById("btn-gr").classList.toggle("pixel-btn-lang-active", lang === "gr");
+}
+
+applyLang();
+</script>
+
+</body>
+</html>

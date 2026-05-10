@@ -1,31 +1,22 @@
 # Python Project: Math Game
+
 import random
 
 #Menu
-# until correct input loop create
 def main_menu():
     choice = input("--------- Math Game ---------\n\n"
                      "1. Έναρξη παιχνιδιού\n"
                      "2. Οδηγίες\n"
                      "3. Έξοδος\n\n"
                      "📌 Επιλέξτε 1-3: ")
-    
-    # Choices for menu
-    if choice == '1':
-        play_game()
-    elif choice == '2':
-        show_instructions()
-    elif choice == '3':
-        print("Ευχαριστούμε που παίξατε!")
-    else:
-        print("Άκυρη επιλογή. Παρακαλώ δοκιμάστε ξανά.")
+    return choice
 
 # All operations with rounds message
 def play_game():
     score = 0
 
     for i in range(1,11):
-        operation = random.choice(['+', '-', '*',])
+        operation = random.choice(['+', '-', '*'])
         num1 = random.randint(1, 20)
         num2 = random.randint(1, 20)
 
@@ -45,7 +36,6 @@ def play_game():
         else:
             print(f"❌ Λάθος! Η σωστή απάντηση είναι {correct_answer}.")
 
-
     print("\n-------------------------------------")
     print(f"⭐ Το τελικό σου σκορ είναι: {score}/10")
 
@@ -58,5 +48,21 @@ def show_instructions():
               "3️⃣  Αν απαντήσεις σωστά, παίρνεις 1 πόντο.\n" 
               "4️⃣  Στο τέλος εμφανίζεται το συνολικό σου σκορ.")
 
-main_menu()
+# Loop until correct choice
+while True:
+    choice = main_menu()
+    # Choices for menu
+    if choice == '1':
+        play_game()
+    elif choice == '2':
+        show_instructions()
+    elif choice == '3':
+        print("Ευχαριστούμε που παίξατε!")
+        break
+    else:
+        print("Άκυρη επιλογή. Παρακαλώ δοκιμάστε ξανά.")
 
+# Difficulty levels choice in start of the game 
+# Easy: numbers 1-10(what i have now), maybe only - and +
+# Medium: numbers 1-20 (+, −, ×)
+# Hard: numbers 1-50 (+, −, ×, ÷)
