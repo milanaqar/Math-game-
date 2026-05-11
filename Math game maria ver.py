@@ -39,24 +39,31 @@ def play_game():
     
     epilogi = input("\nΕπίλεξε πράξη (1-4): ")
     countdown(10)
-    
 
-    def ask_question(num1, num2, praxi):             # Συνάρτηση πράξεων για αποφυγή επαναλήψεων
-        if praxi == "+":
-            correct = num1 + num2
-        elif praxi == "-":
-            if num1 < num2:
-            num1, num2 = num2, num1
-            correct = num1 - num2
-        elif praxi == "*":
-            correct= num1*num2    
-        answer = int(input(f"Γράψε πόσο κάνει {num1} {praxi} {num2}: "))
-        return answer == correct, correct
-            if answer==correct:
-                 print("✅ Σωστά! Κερδίζεις έναν βαθμό!")
-                 score +=1
-            else:
-                    print(f"❌ Λάθος! Η σωστή απάντηση είναι:{num1} {praxi} {num2} = {correct}")
+    is_correct, correct = ask_question(num1, num2, praxi)
+
+    if is_correct:
+         print("✅ Σωστά! Κερδίζεις έναν βαθμό!")
+         score += 1
+    else:
+         print(f"❌ Λάθος! Η σωστή απάντηση είναι: {correct}")
+
+def ask_question(num1, num2, praxi):             # Συνάρτηση πράξεων για αποφυγή επαναλήψεων
+    if praxi == "+":
+     correct = num1 + num2
+
+    elif praxi == "-":
+        if num1 < num2:
+         num1, num2 = num2, num1
+         correct = num1 - num2
+
+    elif praxi == "*":
+        correct= num1*num2 
+
+    answer = int(input(f"Γράψε πόσο κάνει {num1} {praxi} {num2}: "))
+    return answer == correct, correct                         # True/False, correct answer
+        
+   
 
 while True:
     if epilogi == "1":
