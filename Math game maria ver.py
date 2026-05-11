@@ -32,7 +32,13 @@ def play_game():
     print("4. Έξοδος")
     
     epilogi = input("\nΕπίλεξε πράξη (1-4): ")
-
+    def countdown(seconds):                                        #Συνάρτηση αντίστροφης μέτρησης
+                     while seconds > 0:
+                       print(f"Απομένουν: {seconds} δευτερόλεπτα", end="\r")
+                       time.sleep(1)
+                       seconds -= 1
+                       print("Τέλος χρόνου! Μπαμ! 💥")
+ while True:
     if epilogi == "1":
         print("\n--- Ας προσθέσουμε! ---")
 
@@ -45,7 +51,8 @@ def play_game():
                       
         for i in range(1, 11):
              if epipedo == "Α":
-                num1 = random.randint(1, 10)                                               # Why 1-10 and 1-20?
+                num1 = random.randint(1, 10)                                               # Why 1-10 and 1-20? 
+                                                                                           # 1-20 είναι δυσκολότερο
                 num2 = random.randint(1, 10)
              else:
                 num1 = random.randint(1, 20)
@@ -77,14 +84,8 @@ def play_game():
                  athroisma = num1 + num2
                  print(f"Γύρος: {i}/10")
                  answer = int(input(f"Γράψε πόσο κάνει {num1} + {num2}: \n"))
-                 countdown(10)
-                 def countdown(seconds):
-                     while seconds > 0:
-                       print(f"Απομένουν: {seconds} δευτερόλεπτα", end="\r")
-                       time.sleep(1)
-                       seconds -= 1
-                       print("Τέλος χρόνου! Μπαμ! 💥")
- 
+                 countdown(60)
+                 
         if answer==athroisma:
                  print("✅ Σωστά! Κερδίζεις έναν βαθμό!")
                  score +=1
@@ -140,12 +141,8 @@ def play_game():
                 diafora = num2 - num1
             print(f"Γύρος: {i}/10")
             answer = int(input(f"Γράψε πόσο κάνει {num1} + {num2}: \n"))
-            def countdown(seconds):
-                 while seconds > 0:
-                      print(f"Απομένουν: {seconds} δευτερόλεπτα", end="\r")
-                      time.sleep(1)
-                      seconds -= 1
-                      print("Τέλος χρόνου! Μπαμ! 💥")
+            countdown(60):
+                 
  
         if answer==diafora:
                  print("✅ Σωστά!Κερδίζεις έναν βαθμό!")
@@ -190,32 +187,27 @@ def play_game():
 
 
         if epipedo == "Γ":
-            def countdown(seconds):
-                 while seconds > 0:
-                      print(f"Απομένουν: {seconds} δευτερόλεπτα", end="\r")
-                      time.sleep(1)
-                      seconds -= 1
-                      print("Τέλος χρόνου! Μπαμ! 💥")
-                      ginomeno = num1 * num2
-                      print(f"Γύρος: {i}/10")
-                      answer = int(input(f"Γράψε πόσο κάνει {num1} * {num2}: \n"))
-                      if answer==ginomeno:
-                           print("✅ Σωστά!Κερδίζεις έναν βαθμό!")
-                           score +=1
-                      else:
-                           print(f"❌ Λάθος! Η σωστή απάντηση είναι: {num1} * {num2}= {ginomeno}")
-
-
-            if epilogi == "4":
-                print("Ευχαριστώ που παίξαμε! Τα ξαναλέμε!")    # Σταματάει το loop και κλείνει το πρόγραμμα  check                                            
+            countdown (60)
+            ginomeno = num1 * num2
+            print(f"Γύρος: {i}/10")
+            answer = int(input(f"Γράψε πόσο κάνει {num1} * {num2}: \n"))
+            if answer==ginomeno:
+                print("✅ Σωστά!Κερδίζεις έναν βαθμό!")
+                score +=1
             else:
+                print(f"❌ Λάθος! Η σωστή απάντηση είναι: {num1} * {num2}= {ginomeno}")
+
+
+    if epilogi == "4":
+                print("Ευχαριστώ που παίξαμε! Τα ξαναλέμε!")    # Σταματάει το loop και κλείνει το πρόγραμμα  check                                            
+    else:
                 print("Χμμ, δεν κατάλαβα... Διάλεξε 1, 2, 3 ή 4")
 
 
 
 
-    print("\n-------------------------------------")
-    print(f"⭐ Το τελικό σου σκορ είναι: {score}/10")
+            print("\n-------------------------------------")
+            print(f"⭐ Η τελική σου βαθμολογία είναι: {score}/10")
 
     play_game()
 
@@ -231,7 +223,7 @@ def show_instructions():
           "3. Το παιχνίδι έχει 10 γύρους.\n" 
           "4. Σε κάθε γύρο οι αριθμοί εμφανίζονται τυχαία\n" 
           "5. Αν απαντήσεις σωστά, παίρνεις 1 βαθμό.\n" 
-          "6. Στο τέλος εμφανίζεται το συνολικό σου σκορ.")
+          "6. Στο τέλος εμφανίζεται η συνολική σου βαθμολογία.")
 
 arxiko_menu()
 
