@@ -21,7 +21,13 @@ def arxiko_menu():
          else:
              print("Άκυρη επιλογή. Παρακαλώ δοκίμασε ξανά (1-3).")
              print("-------------------------------")
-
+            
+def countdown(seconds):                                        #Συνάρτηση αντίστροφης μέτρησης
+                    while seconds > 0:
+                        print(f"Απομένουν: {seconds} δευτερόλεπτα", end="\r")
+                        time.sleep(1)
+                        seconds -= 1
+                    print("Τέλος χρόνου! Μπαμ! 💥")
 
 # Επιλογή 1: Παιχνίδι (Ορισμός συνάρτησης)
 def play_game():
@@ -32,12 +38,7 @@ def play_game():
     print("4. Έξοδος")
     
     epilogi = input("\nΕπίλεξε πράξη (1-4): ")
-    def countdown(seconds):                                        #Συνάρτηση αντίστροφης μέτρησης
-                    while seconds > 0:
-                        print(f"Απομένουν: {seconds} δευτερόλεπτα", end="\r")
-                        time.sleep(1)
-                        seconds -= 
-                    print("Τέλος χρόνου! Μπαμ! 💥")
+    
 
     def ask_question(num1, num2, praxi):             # Συνάρτηση πράξεων για αποφυγή επαναλήψεων
         if prαxi == "+":
@@ -259,7 +260,3 @@ def show_instructions():
 
 arxiko_menu()
 
-
-        
-
-# run for 1 round only + Γ
