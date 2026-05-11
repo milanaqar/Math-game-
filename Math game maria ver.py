@@ -42,7 +42,7 @@ def play_game():
     
 
     def ask_question(num1, num2, praxi):             # Συνάρτηση πράξεων για αποφυγή επαναλήψεων
-        if prαxi == "+":
+        if praxi == "+":
             correct = num1 + num2
         elif praxi == "-":
             if num1 < num2:
