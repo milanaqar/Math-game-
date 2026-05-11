@@ -71,38 +71,24 @@ while True:
                       
         for i in range(1, 11):
              if epipedo == "Α":
-                num1 = random.randint(1, 10)                                               # Why 1-10 and 1-20? 
-                                                                                        # 1-20 είναι δυσκολότερο
-                num2 = random.randint(1, 10)
-             elif epipedo=="Β":
-                num1 = random.randint(1, 20)
-                num2 = random.randint(1, 20)
-             elif epipedo== "Γ":
-                num1 = random.randint(1, 20)
-                num2 = random.randint(1, 20)
+                 num1, num2 = random.randint(1, 10), random.randint(1, 10)
+                 print(f"Γύρος: {i}/1")
+                 ask_question(num1, num2, +)
+             elif epipedo == "Β":
+                num1, num2 = random.randint(1, 20), random.randint(1, 20)
+                print(f"Γύρος: {i}/1")
+                 ask_question(num1, num2, +)
+             elif epipedo == "Γ":
+                countdown (60)
+                num1, num2 = random.randint(1, 20), random.randint(1, 20)
+                print(f"Γύρος: {i}/10 — Έχεις 60 δευτερόλεπτα!")
             else:
                 print("Άκυρη επιλογή!")
             break
-             for i in range(1, 11):
-                if epipedo == "Α":
-                    num1, num2 = random.randint(1, 10), random.randint(1, 10)
-                elif epipedo == "Β":
-                    num1, num2 = random.randint(1, 20), random.randint(1, 20)
-                elif epipedo == "Γ":
-                    num1, num2 = random.randint(1, 20), random.randint(1, 20)
-
+             
                            
 
-            if epipedo == "Γ":
-                 print(f"Γύρος: {i}/10 — Έχεις 60 δευτερόλεπτα!")
-                 countdown(60)
-                 answer = int(input(f"Γράψε πόσο κάνει {num1} + {num2}: "))
-                 
-                if answer==athroisma:
-                     print("✅ Σωστά! Κερδίζεις έναν βαθμό!")
-                     score +=1
-                else:
-                    print(f"❌ Λάθος! Η σωστή απάντηση είναι:{num1} + {num2} = {athroisma}")
+            
 
     elif epilogi == "2":
         print("\n--- Ας αφαιρέσουμε! ---")
@@ -111,56 +97,33 @@ while True:
         print("Β) Επίπεδο: Μέτριο\n")
         print("Γ) Επίπεδο: Δύσκολο\n")
         epipedo = input("\nΔιάλεξε επίπεδο (Α, Β, Γ): \n").upper()
-
+        if num1 < num2:
+                num1, num2 = num2, num1
         for i in range(1, 11):
-            if epipedo == "Α":
-                num1 = random.randint(1, 10)
-                num2 = random.randint(1, 10)
+             if epipedo == "Α":
+                 num1, num2 = random.randint(1, 10), random.randint(1, 10)
+                 print(f"Γύρος: {i}/1")
+                 ask_question(num1, num2, -)
+             elif epipedo == "Β":
+                num1, num2 = random.randint(1, 20), random.randint(1, 20)
+                print(f"Γύρος: {i}/1")
+                 ask_question(num1, num2, -)
+             elif epipedo == "Γ":
+                countdown (60)
+                num1, num2 = random.randint(1, 20), random.randint(1, 20)
+                print(f"Γύρος: {i}/10 — Έχεις 60 δευτερόλεπτα!")
+                ask_question(num1, num2, -)
             else:
-                num1 = random.randint(1, 20)
-                num2 = random.randint(1, 20)
+                print("Άκυρη επιλογή!")
+            break
+        
+           
 
-        if epipedo == "Α":
-            if num1 < num2:
-                num1, num2 = num2, num1                     # Αποφυγή αρνητικών αριθμών
-            diafora = num1 - num2
-            answer = int(input(f"Γράψε πόσο κάνει {num1} - {num2}: "))
-            print(f"Γύρος: {i}/10")
-            answer = int(input(f"Γράψε πόσο κάνει {num1} - {num2}: \n"))
-            if answer==diafora:
-                 print("✅ Σωστά!Κερδίζεις έναν βαθμό!")
-                 score +=1
-            else:
-                print(f"❌ Λάθος! Η σωστή απάντηση είναι: {num1} - {num2} = {diafora}")
-
-        if epipedo == "Β":
-            if num1>num2:
-                diafora = num1 - num2
-            else:
-                diafora = num2 - num1
-            print(f"Γύρος: {i}/10")
-            answer = int(input(f"Γράψε πόσο κάνει {num1} - {num2}: \n"))
-            if answer==diafora:
-                 print("✅ Σωστά!Κερδίζεις έναν βαθμό!")
-                 score +=1
-            else:
-                print(f"❌ Λάθος! Η σωστή απάντηση είναι: {num1} - {num2} = {diafora}")
-
-        if epipedo == "Γ":
-            if num1>num2:
-                diafora = num1 - num2
-            else:
-                diafora = num2 - num1
-            print(f"Γύρος: {i}/10")
-            answer = int(input(f"Γράψε πόσο κάνει {num1} + {num2}: \n"))
-            countdown(60):
+       
+        
                  
  
-        if answer==diafora:
-                 print("✅ Σωστά!Κερδίζεις έναν βαθμό!")
-                 score +=1
-        else:
-                print(f"❌ Λάθος! Η σωστή απάντηση είναι: {num1} - {num2} = {diafora}")
+       
 
     elif epilogi == "3":
         print("\n--- Ας πολλαπλασιάσουμε! ---")
@@ -173,41 +136,21 @@ while True:
             if epipedo == "Α":
                 num1 = random.randint(1, 10)
                 num2 = random.randint(1, 10)
-            else:
+                ask_question (num1, num2, *)
+            elif epipedo=="Β":
                 num1 = random.randint(1, 20)
                 num2 = random.randint(1, 20)
-
-        if epipedo == "Α":
-            ginomeno = num1 * num2
-            print(f"Γύρος: {i}/10")
-            answer = int(input(f"Γράψε πόσο κάνει {num1} * {num2}: \n"))
-            if answer==ginomeno:
-                 print("✅ Σωστά!Κερδίζεις έναν βαθμό!")
-                 score +=1
+                ask_question (num1, num2, *)
+            elif epipedo == "Γ":
+                countdown (60)
+                num1, num2 = random.randint(1, 20), random.randint(1, 20)
+                print(f"Γύρος: {i}/10 — Έχεις 60 δευτερόλεπτα!")
+                ask_question(num1, num2, *)
             else:
-                print(f"❌ Λάθος! Η σωστή απάντηση είναι: {num1} * {num2} = {ginomeno}")
-
-        if epipedo == "Β":
-            ginomeno = num1 * num2
-            print(f"Γύρος: {i}/10")
-            answer = int(input(f"Γράψε πόσο κάνει {num1} * {num2}: \n"))
-            if answer==ginomeno:
-                 print("✅ Σωστά!Κερδίζεις έναν βαθμό!")
-                 score +=1
-            else:
-                print(f"❌ Λάθος! Η σωστή απάντηση είναι: {num1} * {num2} = {ginomeno}")       
-
-
-        if epipedo == "Γ":
-            countdown (60)
-            ginomeno = num1 * num2
-            print(f"Γύρος: {i}/10")
-            answer = int(input(f"Γράψε πόσο κάνει {num1} * {num2}: \n"))
-            if answer==ginomeno:
-                print("✅ Σωστά!Κερδίζεις έναν βαθμό!")
-                score +=1
-            else:
-                print(f"❌ Λάθος! Η σωστή απάντηση είναι: {num1} * {num2}= {ginomeno}")
+                print("Άκυρη επιλογή!")
+            break
+        
+            
 
 
     if epilogi == "4":
