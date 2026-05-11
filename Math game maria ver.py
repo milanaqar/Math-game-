@@ -38,6 +38,7 @@ def play_game():
     print("4. Έξοδος")
     
     epilogi = input("\nΕπίλεξε πράξη (1-4): ")
+    countdown(10)
     
 
     def ask_question(num1, num2, praxi):             # Συνάρτηση πράξεων για αποφυγή επαναλήψεων
