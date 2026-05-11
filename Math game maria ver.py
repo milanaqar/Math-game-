@@ -38,27 +38,43 @@ def play_game():
     print("4. Έξοδος")
     
     epilogi = input("\nΕπίλεξε πράξη (1-4): ")
-    countdown(10)
+    
+    if epilogi == '1':
+        praxi ="+"
+    elif epilogi == "2":
+        praxi = "-"
+    elif epilogi == "3":
+        praxi = "*"
+    else:
+       print("Έξοδος...")
+       return 
+    
+    for i in range(1,11):
+        print(f"\nΓύρος {i}/10")
 
-    is_correct, correct = ask_question(num1, num2, praxi)
-
-    if is_correct:
+        num1 = random.randint(1,20)
+        num2 = random.randint(1,20)
+        
+        is_correct, correct = ask_question(num1, num2, praxi)
+        
+        if is_correct:
          print("✅ Σωστά! Κερδίζεις έναν βαθμό!")
          score += 1
-    else:
+    
+        else:
          print(f"❌ Λάθος! Η σωστή απάντηση είναι: {correct}")
 
 def ask_question(num1, num2, praxi):             # Συνάρτηση πράξεων για αποφυγή επαναλήψεων
     if praxi == "+":
-     correct = num1 + num2
+        correct = num1 + num2
 
     elif praxi == "-":
         if num1 < num2:
-         num1, num2 = num2, num1
-         correct = num1 - num2
+            num1, num2 = num2, num1
+            correct = num1 - num2
 
     elif praxi == "*":
-        correct= num1*num2 
+        correct= num1 * num2 
 
     answer = int(input(f"Γράψε πόσο κάνει {num1} {praxi} {num2}: "))
     return answer == correct, correct                         # True/False, correct answer
