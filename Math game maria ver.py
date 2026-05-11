@@ -44,38 +44,38 @@ def countdown(seconds):                                        #Συνάρτησ
 # Επιλογή 1: Παιχνίδι (Ορισμός συνάρτησης
 def play_game():
     while True:
-    score = 0
-    print("1. Πρόσθεση (+)")
-    print("2. Αφαίρεση (-)")
-    print("3. Πολλαπλασιασμός (x)")
-    print("4. Έξοδος")
+        score = 0
+        print("1. Πρόσθεση (+)")
+        print("2. Αφαίρεση (-)")
+        print("3. Πολλαπλασιασμός (x)")
+        print("4. Έξοδος")
     
-    epilogi = input("\nΕπίλεξε πράξη (1-4): ")
+        epilogi = input("\nΕπίλεξε πράξη (1-4): ")
     
-    if epilogi == '1':
-        praxi ="+"
-    elif epilogi == "2":
-        praxi = "-"
-    elif epilogi == "3":
-        praxi = "*"
-    else:
+        if epilogi == '1':
+            praxi ="+"
+        elif epilogi == "2":
+            praxi = "-"
+        elif epilogi == "3":
+            praxi = "*"
+        else:
        print("Έξοδος...")
        return 
     
-    for i in range(1,11):
-        print(f"\nΓύρος {i}/10")
+        for i in range(1,11):
+            print(f"\nΓύρος {i}/10")
 
-        num1 = random.randint(1,20)
-        num2 = random.randint(1,20)
+            num1 = random.randint(1,20)
+            num2 = random.randint(1,20)
         
-        is_correct, correct = ask_question(num1, num2, praxi)
+            is_correct, correct = ask_question(num1, num2, praxi)
         
-        if is_correct:
-         print("✅ Σωστά! Κερδίζεις έναν βαθμό!")
-         score += 1
+            if is_correct:
+                print("✅ Σωστά! Κερδίζεις έναν βαθμό!")
+                score += 1
     
-        else:
-         print(f"❌ Λάθος! Η σωστή απάντηση είναι: {correct}")
+            else:
+                 print(f"❌ Λάθος! Η σωστή απάντηση είναι: {correct}")
 
 def ask_question(num1, num2, praxi):             # Συνάρτηση πράξεων για αποφυγή επαναλήψεων
     if praxi == "+":
@@ -94,7 +94,7 @@ def ask_question(num1, num2, praxi):             # Συνάρτηση πράξε
         
    
 
-while True:
+
     if epilogi == "1":
         print("\n--- Ας προσθέσουμε! ---")
 
@@ -119,7 +119,7 @@ while True:
                 num1, num2 = random.randint(1, 20), random.randint(1, 20)
                 print(f"Γύρος: {i}/10 — Έχεις 60 δευτερόλεπτα!")
                 ask_question(num1, num2, "+")
-            else:
+             else:
                 print("Άκυρη επιλογή!")
                 break
                            
@@ -145,9 +145,9 @@ while True:
                 num1, num2 = random.randint(1, 20), random.randint(1, 20)
                 print(f"Γύρος: {i}/10 — Έχεις 60 δευτερόλεπτα!")
                 ask_question(num1, num2, "-")
-            else:
+             else:
                 print("Άκυρη επιλογή!")
-            break    
+                break    
            
    elif epilogi == "3":
         print("\n--- Ας πολλαπλασιάσουμε! ---")
