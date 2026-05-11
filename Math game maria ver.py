@@ -1,8 +1,8 @@
 import random
 import time
+
 print("=====Ας παίξουμε ... Μαθηματικά!=====")
-#Menu_1
-# until correct input loop create
+
 def arxiko_menu():
     while True:
          choice = input("*****Μαθηματικό παιχνίδι*****\n\n"
@@ -10,6 +10,7 @@ def arxiko_menu():
                      "2. Οδηγίες\n"
                      "3. Έξοδος\n\n"
                      "📌 Επιλέξτε 1-3: ")
+         
          if choice == '1':
               play_game()
          elif choice == '2':
@@ -27,70 +28,77 @@ def play_game():
     score = 0
     print("1. Πρόσθεση (+)")
     print("2. Αφαίρεση (-)")
-    print("3. Πολλαπλασιασμός (X)")
+    print("3. Πολλαπλασιασμός (x)")
     print("4. Έξοδος")
     
     epilogi = input("\nΕπίλεξε πράξη (1-4): ")
 
     if epilogi == "1":
         print("\n--- Ας προσθέσουμε! ---")
-        epipedo=input("\nΔιάλεξε επίπεδο: \n")
-        print("Α Επίπεδο: Εύκολο\n")
-        print("Β Επίπεδο: Μέτριο\n")
-        print("Γ Επίπεδο: Δύσκολο\n")
-        epipedo = input("\nΔιάλεξε επίπεδο (Α, Β, Γ): \n").upper()                # .upper() για να δέχεται και μικρά
+
+        epipedo=input("\nΔιάλεξε επίπεδο (Α-Γ): \n")
+        print("Α) Επίπεδο: Εύκολο\n")
+        print("Β) Επίπεδο: Μέτριο\n")
+        print("Γ) Επίπεδο: Δύσκολο\n")
+
+        epipedo = input("\nΔιάλεξε επίπεδο (Α, Β, Γ): \n").upper()  # .upper() για να δέχεται και μικρά
+                      
         for i in range(1, 11):
-            if epipedo == "Α":
-                num1 = random.randint(1, 10)
+             if epipedo == "Α":
+                num1 = random.randint(1, 10)                                               # Why 1-10 and 1-20?
                 num2 = random.randint(1, 10)
-            else:
+             else:
                 num1 = random.randint(1, 20)
                 num2 = random.randint(1, 20)
         
-        if epipedo == "Α":
-            athroisma = num1 + num2
-            print(f"Γύρος: {i}/10")
-            answer = int(input(f"Γράψε πόσο κάνει{num1}+{num2}: \n"))
-            if answer==athroisma:
+             if epipedo == "Α":
+                 athroisma = num1 + num2
+                 print(f"Γύρος: {i}/10")
+                 answer = int(input(f"Γράψε πόσο κάνει {num1} + {num2}: \n"))
+
+             if answer==athroisma:
                  print("✅ Σωστά!Κερδίζεις έναν βαθμό!")
                  score +=1
-            else:
-                print(f"❌ Λάθος! Η σωστή απάντηση είναι:{num1} + {num2} = {athroisma}")
+             else:
+                print(f"❌ Λάθος! Η σωστή απάντηση είναι: {num1} + {num2} = {athroisma}")
 
         if epipedo == "Β":
-            athroisma = num1 + num2
-            print(f"Γύρος: {i}/10")
-            answer = int(input(f"Γράψε πόσο κάνει{num1}+{num2}: \n"))
-            if answer==athroisma:
-                 print("✅ Σωστά!Κερδίζεις έναν βαθμό!")
+                 athroisma = num1 + num2
+                 print(f"Γύρος: {i}/10")
+                 answer = int(input(f"Γράψε πόσο κάνει {num1} + {num2}: \n"))
+
+        if answer==athroisma:
+                 print("✅ Σωστά! Κερδίζεις έναν βαθμό!")
                  score +=1
-            else:
-                print(f"❌ Λάθος! Η σωστή απάντηση είναι:{num1} + {num2} = {athroisma}")
+        else:
+                print(f"❌ Λάθος! Η σωστή απάντηση είναι: {num1} + {num2} = {athroisma}")
 
         if epipedo == "Γ":
-            athroisma = num1 + num2
-            print(f"Γύρος: {i}/10")
-            answer = int(input(f"Γράψε πόσο κάνει{num1}+{num2}: \n"))
-            def countdown(seconds):
-                 while seconds > 0:
-                      print(f"Απομένουν: {seconds} δευτερόλεπτα", end="\r")
-                      time.sleep(1)
-                      seconds -= 1
-                      print("Τέλος χρόνου! Μπαμ! 💥")
+                 athroisma = num1 + num2
+                 print(f"Γύρος: {i}/10")
+                 answer = int(input(f"Γράψε πόσο κάνει {num1} + {num2}: \n"))
+                 countdown(10)
+                 def countdown(seconds):
+                     while seconds > 0:
+                       print(f"Απομένουν: {seconds} δευτερόλεπτα", end="\r")
+                       time.sleep(1)
+                       seconds -= 1
+                       print("Τέλος χρόνου! Μπαμ! 💥")
  
-            if answer==athroisma:
-                 print("✅ Σωστά!Κερδίζεις έναν βαθμό!")
+        if answer==athroisma:
+                 print("✅ Σωστά! Κερδίζεις έναν βαθμό!")
                  score +=1
-            else:
+        else:
                 print(f"❌ Λάθος! Η σωστή απάντηση είναι:{num1} + {num2} = {athroisma}")
 
     elif epilogi == "2":
         print("\n--- Ας αφαιρέσουμε! ---")
         epipedo=input("\nΔιάλεξε επίπεδο: \n")
-        print("Α Επίπεδο: Εύκολο\n")
-        print("Β Επίπεδο: Μέτριο\n")
-        print("Γ Επίπεδο: Δύσκολο\n")
+        print("Α) Επίπεδο: Εύκολο\n")
+        print("Β) Επίπεδο: Μέτριο\n")
+        print("Γ) Επίπεδο: Δύσκολο\n")
         epipedo = input("\nΔιάλεξε επίπεδο (Α, Β, Γ): \n").upper()
+
         for i in range(1, 11):
             if epipedo == "Α":
                 num1 = random.randint(1, 10)
@@ -98,18 +106,19 @@ def play_game():
             else:
                 num1 = random.randint(1, 20)
                 num2 = random.randint(1, 20)
+
         if epipedo == "Α":
             if num1>num2:
                 diafora = num1 - num2
             else:
                 diafora = num2 - num1
             print(f"Γύρος: {i}/10")
-            answer = int(input(f"Γράψε πόσο κάνει{num1}-{num2}: \n"))
+            answer = int(input(f"Γράψε πόσο κάνει {num1} - {num2}: \n"))
             if answer==diafora:
                  print("✅ Σωστά!Κερδίζεις έναν βαθμό!")
                  score +=1
             else:
-                print(f"❌ Λάθος! Η σωστή απάντηση είναι:{num1} - {num2} = {diafora}")
+                print(f"❌ Λάθος! Η σωστή απάντηση είναι: {num1} - {num2} = {diafora}")
 
         if epipedo == "Β":
             if num1>num2:
@@ -117,12 +126,12 @@ def play_game():
             else:
                 diafora = num2 - num1
             print(f"Γύρος: {i}/10")
-            answer = int(input(f"Γράψε πόσο κάνει{num1}-{num2}: \n"))
+            answer = int(input(f"Γράψε πόσο κάνει {num1} - {num2}: \n"))
             if answer==diafora:
                  print("✅ Σωστά!Κερδίζεις έναν βαθμό!")
                  score +=1
             else:
-                print(f"❌ Λάθος! Η σωστή απάντηση είναι:{num1} - {num2} = {diafora}")
+                print(f"❌ Λάθος! Η σωστή απάντηση είναι: {num1} - {num2} = {diafora}")
 
         if epipedo == "Γ":
             if num1>num2:
@@ -130,7 +139,7 @@ def play_game():
             else:
                 diafora = num2 - num1
             print(f"Γύρος: {i}/10")
-            answer = int(input(f"Γράψε πόσο κάνει{num1}+{num2}: \n"))
+            answer = int(input(f"Γράψε πόσο κάνει {num1} + {num2}: \n"))
             def countdown(seconds):
                  while seconds > 0:
                       print(f"Απομένουν: {seconds} δευτερόλεπτα", end="\r")
@@ -142,14 +151,14 @@ def play_game():
                  print("✅ Σωστά!Κερδίζεις έναν βαθμό!")
                  score +=1
         else:
-                print(f"❌ Λάθος! Η σωστή απάντηση είναι:{num1} - {num2} = {diafora}")
+                print(f"❌ Λάθος! Η σωστή απάντηση είναι: {num1} - {num2} = {diafora}")
 
     elif epilogi == "3":
         print("\n--- Ας πολλαπλασιάσουμε! ---")
         epipedo=input("\nΔιάλεξε επίπεδο: \n")
-        print("Α Επίπεδο: Εύκολο\n")
-        print("Β Επίπεδο: Μέτριο\n")
-        print("Γ Επίπεδο: Δύσκολο\n")
+        print("Α) Επίπεδο: Εύκολο\n")
+        print("Β) Επίπεδο: Μέτριο\n")
+        print("Γ) Επίπεδο: Δύσκολο\n")
         epipedo = input("\nΔιάλεξε επίπεδο (Α, Β, Γ): \n").upper()
         for i in range(1, 11):
             if epipedo == "Α":
@@ -158,25 +167,26 @@ def play_game():
             else:
                 num1 = random.randint(1, 20)
                 num2 = random.randint(1, 20)
+
         if epipedo == "Α":
             ginomeno = num1 * num2
             print(f"Γύρος: {i}/10")
-            answer = int(input(f"Γράψε πόσο κάνει{num1}*{num2}: \n"))
+            answer = int(input(f"Γράψε πόσο κάνει {num1} * {num2}: \n"))
             if answer==ginomeno:
                  print("✅ Σωστά!Κερδίζεις έναν βαθμό!")
                  score +=1
             else:
-                print(f"❌ Λάθος! Η σωστή απάντηση είναι:{num1} * {num2} = {ginomeno}")
+                print(f"❌ Λάθος! Η σωστή απάντηση είναι: {num1} * {num2} = {ginomeno}")
 
         if epipedo == "Β":
             ginomeno = num1 * num2
             print(f"Γύρος: {i}/10")
-            answer = int(input(f"Γράψε πόσο κάνει{num1}*{num2}: \n"))
+            answer = int(input(f"Γράψε πόσο κάνει {num1} * {num2}: \n"))
             if answer==ginomeno:
                  print("✅ Σωστά!Κερδίζεις έναν βαθμό!")
                  score +=1
             else:
-                print(f"❌ Λάθος! Η σωστή απάντηση είναι:{num1} * {num2} = {ginomeno}")       
+                print(f"❌ Λάθος! Η σωστή απάντηση είναι: {num1} * {num2} = {ginomeno}")       
 
 
         if epipedo == "Γ":
@@ -188,18 +198,18 @@ def play_game():
                       print("Τέλος χρόνου! Μπαμ! 💥")
                       ginomeno = num1 * num2
                       print(f"Γύρος: {i}/10")
-                      answer = int(input(f"Γράψε πόσο κάνει{num1}*{num2}: \n"))
+                      answer = int(input(f"Γράψε πόσο κάνει {num1} * {num2}: \n"))
                       if answer==ginomeno:
                            print("✅ Σωστά!Κερδίζεις έναν βαθμό!")
                            score +=1
                       else:
-                           print(f"❌ Λάθος! Η σωστή απάντηση είναι:{num1} * {num2}= {ginomeno}")
+                           print(f"❌ Λάθος! Η σωστή απάντηση είναι: {num1} * {num2}= {ginomeno}")
 
-#place inside play_game correct
+
             if epilogi == "4":
-        print("Ευχαριστώ που παίξαμε! Τα ξαναλέμε!")    # Σταματάει το loop και κλείνει το πρόγραμμα  check                                            
-    else:
-        print("Χμμ, δεν κατάλαβα... Διάλεξε 1, 2, 3 ή 4")
+                print("Ευχαριστώ που παίξαμε! Τα ξαναλέμε!")    # Σταματάει το loop και κλείνει το πρόγραμμα  check                                            
+            else:
+                print("Χμμ, δεν κατάλαβα... Διάλεξε 1, 2, 3 ή 4")
 
 
 
@@ -228,4 +238,4 @@ arxiko_menu()
 
         
 
-
+# run for 1 round only + Γ
