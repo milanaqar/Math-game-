@@ -59,8 +59,8 @@ def play_game():
         elif epilogi == "3":
             praxi = "*"
         else:
-       print("Έξοδος...")
-       return 
+             print("Έξοδος...")
+             return 
     
         for i in range(1,11):
             print(f"\nΓύρος {i}/10")
@@ -149,7 +149,7 @@ def ask_question(num1, num2, praxi):             # Συνάρτηση πράξε
                 print("Άκυρη επιλογή!")
                 break    
            
-   elif epilogi == "3":
+    elif epilogi == "3":
         print("\n--- Ας πολλαπλασιάσουμε! ---")
         epipedo = input("\nΔιάλεξε επίπεδο (Α, Β, Γ): \n").upper()
         for i in range(1, 11):
