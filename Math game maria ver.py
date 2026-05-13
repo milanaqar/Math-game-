@@ -59,40 +59,56 @@ def choose_operation():
             praxi = "-"
         elif epilogi == "3":
             praxi = "*"
-        else:
+        elif epilogi == "4":
              print("Έξοδος...")
              return 
+        else:
+            print("Άκυρη επιλογή. Παρακαλώ δοκίμασε ξανά (1-4).")
+            continue
+
+        epipedo = choose_level()
     
         for i in range(1,11):
             print(f"\nΓύρος {i}/10")
-
-            num1 = random.randint(1,20)
-            num2 = random.randint(1,20)
+            
+            if epipedo == "Α":
+                num1 = random.randint(1,10)
+                num2 = random.randint(1,10)
+            elif epipedo == "Β":
+                num1 = random.randint(1,20)
+                num2 = random.randint(1,20)
+            elif epipedo == "Γ":
+                countdown(60)
+                num1 = random.randint(1,20)
+                num2 = random.randint(1,20)
+            else:
+                print("Άκυρη επιλογή επιπέδου!")
+                break
         
             is_correct, correct = ask_question(num1, num2, praxi)
         
             if is_correct:
                 print("✅ Σωστά! Κερδίζεις έναν βαθμό!")
                 score += 1
-    
             else:
-                 print(f"❌ Λάθος! Η σωστή απάντηση είναι: {correct}")
+                print(f"❌ Λάθος! Η σωστή απάντηση είναι: {correct}")
+        
+                print(f"\n⭐ Η τελική σου βαθμολογία είναι: {score}/10")
 
 def ask_question(num1, num2, praxi):             # Συνάρτηση πράξεων για αποφυγή επαναλήψεων
     if praxi == "+":
-        epipedo = choose_level()
-        first_choice(epilogi)
+        correct = num1 + num2
 
     elif praxi == "-":
         if num1 < num2:
-            epipedo = choose_level()
-            second_choice(epilogi)
+            num1, num2 = num2, num1
+        correct = num1 - num2
 
     elif praxi == "*":
-        epipedo = choose_level()
-        third_choice(epilogi)
+        correct = num1 * num2
 
     answer = int(input(f"Γράψε πόσο κάνει {num1} {praxi} {num2}: "))
+    return answer == correct, correct 
         
    
 
@@ -106,7 +122,7 @@ def choose_level():
 
 
 
-def first_choice(epilogi):
+#def first_choice(epilogi):
     if epilogi == "1":
         print("\n--- Ας προσθέσουμε! ---")
         epipedo = choose_level()
@@ -131,7 +147,7 @@ def first_choice(epilogi):
                            
 
             
-def second_choice(epilogi):
+#def second_choice(epilogi):
     if epilogi == "2":
         print("\n--- Ας αφαιρέσουμε! ---")
         epipedo = choose_level()
@@ -157,7 +173,7 @@ def second_choice(epilogi):
 
 
 
-def third_choice(epilogi):
+#def third_choice(epilogi):
     if epilogi == "3":
         print("\n--- Ας πολλαπλασιάσουμε! ---")
         epipedo = choose_level()
