@@ -3,6 +3,18 @@ import time
 
 print("=====Ας παίξουμε ... Μαθηματικά!=====")
 
+#Επιλογή 2: Οδηγίες
+#Ορισμός συνάρτησης
+def show_instructions():
+    print("\n")
+    print("--------- Οδηγίες ---------\n")
+    print("1. Ο παίκτης/η παίκτρια επιλέγει μαθηματική πράξη.\n"
+          "2. Το παιχνίδι έχει 3 επίπεδα: Στο εύκολο δίνονται αριθμοί από το 0-10, στο μέτριο επίπεδο από το 0-20, ενώ στο δύσκολο υπάρχει και αντίστροφη μέτρηση.\n"
+          "3. Το παιχνίδι έχει 10 γύρους.\n" 
+          "4. Σε κάθε γύρο οι αριθμοί εμφανίζονται τυχαία.\n" 
+          "5. Αν απαντήσεις σωστά, παίρνεις 1 βαθμό.\n" 
+          "6. Στο τέλος εμφανίζεται η συνολική σου βαθμολογία.\n")
+
 def arxiko_menu():
     while True:
          choice = input("*****Μαθηματικό παιχνίδι*****\n\n"
@@ -12,7 +24,7 @@ def arxiko_menu():
                      "📌 Επιλέξτε 1-3: ")
          
          if choice == '1':
-              play_game()
+              choose_operation()
          elif choice == '2':
               show_instructions()
          elif choice == '3':
@@ -29,179 +41,153 @@ def countdown(seconds):                                        #Συνάρτησ
                         seconds -= 1
                     print("Τέλος χρόνου! Μπαμ! 💥")
 
-# Επιλογή 1: Παιχνίδι (Ορισμός συνάρτησης)
-def play_game():
-    score = 0
-    print("1. Πρόσθεση (+)")
-    print("2. Αφαίρεση (-)")
-    print("3. Πολλαπλασιασμός (x)")
-    print("4. Έξοδος")
+# Επιλογή 1: Παιχνίδι Ορισμός συνάρτησης
+def choose_operation():
+    while True:
+        score = 0
+        print("\n--- Επιλογή Πράξης ---")
+        print("1. Πρόσθεση (+)")
+        print("2. Αφαίρεση (-)")
+        print("3. Πολλαπλασιασμός (x)")
+        print("4. Έξοδος")
     
-    epilogi = input("\nΕπίλεξε πράξη (1-4): ")
+        epilogi = input("\nΕπίλεξε πράξη (1-4): ")
     
-    if epilogi == '1':
-        praxi ="+"
-    elif epilogi == "2":
-        praxi = "-"
-    elif epilogi == "3":
-        praxi = "*"
-    else:
-       print("Έξοδος...")
-       return 
-    
-    for i in range(1,11):
-        print(f"\nΓύρος {i}/10")
-
-        num1 = random.randint(1,20)
-        num2 = random.randint(1,20)
-        
-        is_correct, correct = ask_question(num1, num2, praxi)
-        
-        if is_correct:
-         print("✅ Σωστά! Κερδίζεις έναν βαθμό!")
-         score += 1
-    
+        if epilogi == '1':
+            praxi ="+"
+        elif epilogi == "2":
+            praxi = "-"
+        elif epilogi == "3":
+            praxi = "*"
         else:
-         print(f"❌ Λάθος! Η σωστή απάντηση είναι: {correct}")
+             print("Έξοδος...")
+             return 
+    
+        for i in range(1,11):
+            print(f"\nΓύρος {i}/10")
+
+            num1 = random.randint(1,20)
+            num2 = random.randint(1,20)
+        
+            is_correct, correct = ask_question(num1, num2, praxi)
+        
+            if is_correct:
+                print("✅ Σωστά! Κερδίζεις έναν βαθμό!")
+                score += 1
+    
+            else:
+                 print(f"❌ Λάθος! Η σωστή απάντηση είναι: {correct}")
 
 def ask_question(num1, num2, praxi):             # Συνάρτηση πράξεων για αποφυγή επαναλήψεων
     if praxi == "+":
-        correct = num1 + num2
+        epipedo = choose_level()
+        first_choice(epilogi)
 
     elif praxi == "-":
         if num1 < num2:
-            num1, num2 = num2, num1
-            correct = num1 - num2
+            epipedo = choose_level()
+            second_choice(epilogi)
 
     elif praxi == "*":
-        correct= num1 * num2 
+        epipedo = choose_level()
+        third_choice(epilogi)
 
     answer = int(input(f"Γράψε πόσο κάνει {num1} {praxi} {num2}: "))
-    return answer == correct, correct                         # True/False, correct answer
         
    
 
+def choose_level():
+    print("\n--- Επιλογή Επίπεδου ---")
+    print("Α) Επίπεδο: Εύκολο")
+    print("Β) Επίπεδο: Μέτριο")
+    print("Γ) Επίπεδο: Δύσκολο")
+    epipedo = input("\nΔιάλεξε επίπεδο (Α, Β, Γ): ").upper()          # .upper() για να δέχεται και μικρά                 
+    return epipedo
 
 
-while True:
+
+def first_choice(epilogi):
     if epilogi == "1":
         print("\n--- Ας προσθέσουμε! ---")
-
-        print("Α) Επίπεδο: Εύκολο")
-        print("Β) Επίπεδο: Μέτριο")
-        print("Γ) Επίπεδο: Δύσκολο")
-        epipedo = input("\nΔιάλεξε επίπεδο (Α, Β, Γ): ").upper()          # .upper() για να δέχεται και μικρά
-
-       
-                      
+        epipedo = choose_level()
         for i in range(1, 11):
              if epipedo == "Α":
                  num1, num2 = random.randint(1, 10), random.randint(1, 10)
                  print(f"Γύρος: {i}/1")
-                 ask_question(num1, num2, +)
+                 ask_question(num1, num2, "+")
              elif epipedo == "Β":
                 num1, num2 = random.randint(1, 20), random.randint(1, 20)
                 print(f"Γύρος: {i}/1")
-                 ask_question(num1, num2, +)
+                ask_question(num1, num2, "+")
              elif epipedo == "Γ":
                 countdown (60)
                 num1, num2 = random.randint(1, 20), random.randint(1, 20)
                 print(f"Γύρος: {i}/10 — Έχεις 60 δευτερόλεπτα!")
-            else:
+                ask_question(num1, num2, "+")
+             else:
                 print("Άκυρη επιλογή!")
-            break
-             
+                break
+   
                            
 
             
-
-    elif epilogi == "2":
+def second_choice(epilogi):
+    if epilogi == "2":
         print("\n--- Ας αφαιρέσουμε! ---")
-        epipedo=input("\nΔιάλεξε επίπεδο: \n")
-        print("Α) Επίπεδο: Εύκολο\n")
-        print("Β) Επίπεδο: Μέτριο\n")
-        print("Γ) Επίπεδο: Δύσκολο\n")
-        epipedo = input("\nΔιάλεξε επίπεδο (Α, Β, Γ): \n").upper()
+        epipedo = choose_level()
         if num1 < num2:
                 num1, num2 = num2, num1
         for i in range(1, 11):
              if epipedo == "Α":
                  num1, num2 = random.randint(1, 10), random.randint(1, 10)
                  print(f"Γύρος: {i}/1")
-                 ask_question(num1, num2, -)
+                 ask_question(num1, num2,"-")
              elif epipedo == "Β":
                 num1, num2 = random.randint(1, 20), random.randint(1, 20)
                 print(f"Γύρος: {i}/1")
-                 ask_question(num1, num2, -)
+                ask_question(num1, num2, "-")
              elif epipedo == "Γ":
                 countdown (60)
                 num1, num2 = random.randint(1, 20), random.randint(1, 20)
                 print(f"Γύρος: {i}/10 — Έχεις 60 δευτερόλεπτα!")
-                ask_question(num1, num2, -)
-            else:
+                ask_question(num1, num2, "-")
+             else:
                 print("Άκυρη επιλογή!")
-            break
-        
-   
+                break    
 
-    elif epilogi == "3":
+
+
+def third_choice(epilogi):
+    if epilogi == "3":
         print("\n--- Ας πολλαπλασιάσουμε! ---")
-        epipedo=input("\nΔιάλεξε επίπεδο: \n")
-        print("Α) Επίπεδο: Εύκολο\n")
-        print("Β) Επίπεδο: Μέτριο\n")
-        print("Γ) Επίπεδο: Δύσκολο\n")
-        epipedo = input("\nΔιάλεξε επίπεδο (Α, Β, Γ): \n").upper()
+        epipedo = choose_level()
         for i in range(1, 11):
             if epipedo == "Α":
                 num1 = random.randint(1, 10)
                 num2 = random.randint(1, 10)
-                ask_question (num1, num2, *)
+                ask_question (num1, num2, "*")
             elif epipedo=="Β":
                 num1 = random.randint(1, 20)
                 num2 = random.randint(1, 20)
-                ask_question (num1, num2, *)
+                ask_question (num1, num2, "*")
             elif epipedo == "Γ":
                 countdown (60)
                 num1, num2 = random.randint(1, 20), random.randint(1, 20)
                 print(f"Γύρος: {i}/10 — Έχεις 60 δευτερόλεπτα!")
-                ask_question(num1, num2, *)
+                ask_question(num1, num2, "*")
             else:
                 print("Άκυρη επιλογή!")
-            break
-        
-            
-
-
-    if epilogi == "4":
+                break
+    if epilogi in ["1", "2", "3"]:
+        print(f"\n⭐ Η τελική σου βαθμολογία είναι: {score}/10")
+      
+    elif epilogi == "4":
         print("Ευχαριστώ που παίξαμε! Τα ξαναλέμε!")    # Σταματάει το loop και κλείνει το πρόγραμμα  check                                            
     elif epilogi not in ["1","2","3","4"]:
         print("Χμμ, δεν κατάλαβα... Διάλεξε 1, 2, 3 ή 4")
+
+
                
-
-
-
-
 print("\n-------------------------------------")
-           
-
-   if epilogi in ["1", "2", "3"]:
-    print(f"\n⭐ Η τελική σου βαθμολογία είναι: {score}/10")
-
-    
-        
-arxiko_menu()
-    
-#Επιλογή 2: Οδηγίες
-#Ορισμός συνάρτησης
-def show_instructions():                                                          # need to call it and place it 
-    print("\n")
-    print("--------- Οδηγίες ---------\n")
-    print("1. Ο παίκτης/η παίκτρια επιλέγει μαθηματική πράξη.\n"
-          "2. Το παιχνίδι έχει 3 επίπεδα: Στο εύκολο δίνονται αριθμοί από το 0-10, στο μέτριο επίπεδο από το 0-20, ενώ στο δύσκολο υπάρχει και αντίστροφη μέτρηση.\n"
-          "3. Το παιχνίδι έχει 10 γύρους.\n" 
-          "4. Σε κάθε γύρο οι αριθμοί εμφανίζονται τυχαία.\n" 
-          "5. Αν απαντήσεις σωστά, παίρνεις 1 βαθμό.\n" 
-          "6. Στο τέλος εμφανίζεται η συνολική σου βαθμολογία.")
-
 arxiko_menu()
 
