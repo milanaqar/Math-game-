@@ -3,18 +3,20 @@ import time
 
 print("=====Ας παίξουμε ... Μαθηματικά!=====")
 
-#Επιλογή 2: Οδηγίες
-#Ορισμός συνάρτησης
-def show_instructions():
-    print("\n")
-    print("--------- Οδηγίες ---------\n")
-    print("1. Ο παίκτης/η παίκτρια επιλέγει μαθηματική πράξη.\n"
-          "2. Το παιχνίδι έχει 3 επίπεδα: Στο εύκολο δίνονται αριθμοί από το 0-10, στο μέτριο επίπεδο από το 0-20, ενώ στο δύσκολο υπάρχει και αντίστροφη μέτρηση.\n"
-          "3. Το παιχνίδι έχει 10 γύρους.\n" 
-          "4. Σε κάθε γύρο οι αριθμοί εμφανίζονται τυχαία.\n" 
-          "5. Αν απαντήσεις σωστά, παίρνεις 1 βαθμό.\n" 
-          "6. Στο τέλος εμφανίζεται η συνολική σου βαθμολογία.\n")
 
+# Instruction
+def show_instructions():
+    print("\n--------- Οδηγίες ---------\n")
+    print("1. Επιλέγεις μαθηματική πράξη.")
+    print("2. Το παιχνίδι έχει 3 επίπεδα:")
+    print("   - Α: Εύκολο (1–10)")
+    print("   - Β: Μέτριο (1–20)")
+    print("   - Γ: Δύσκολο (1–20 + αντίστροφη μέτρηση)")
+    print("3. Κάθε παιχνίδι έχει 10 γύρους.")
+    print("4. Αν απαντήσεις σωστά, παίρνεις 1 βαθμό.")
+    print("5. Στο τέλος εμφανίζεται η συνολική σου βαθμολογία.\n")
+
+# Main menu
 def arxiko_menu():
     while True:
          choice = input("*****Μαθηματικό παιχνίδι*****\n\n"
@@ -33,16 +35,44 @@ def arxiko_menu():
          else:
              print("Άκυρη επιλογή. Παρακαλώ δοκίμασε ξανά (1-3).")
              print("-------------------------------")
-            
-def countdown(seconds):                                        #Συνάρτηση αντίστροφης μέτρησης
-                    while seconds > 0:
-                        print(f"Απομένουν: {seconds} δευτερόλεπτα", end="\r")
-                        time.sleep(1)
-                        seconds -= 1
-                    print("Τέλος χρόνου! Μπαμ! 💥")
 
-# Επιλογή 1: Παιχνίδι Ορισμός συνάρτησης
-def choose_operation():
+# Timer for Г επιλογη          
+def countdown(seconds):                                        #Συνάρτηση αντίστροφης μέτρησης
+    while seconds > 0:
+       print(f"Απομένουν: {seconds} δευτερόλεπτα", end="\r")
+       time.sleep(1)
+       seconds -= 1
+       print("Τέλος χρόνου! Μπαμ! 💥")
+
+# Difficultty levels
+def choose_level():
+    print("\n--- Επιλογή Επίπεδου ---")
+    print("Α) Εύκολο")
+    print("Β) Μέτριο")
+    print("Γ) Δύσκολο")
+    epipedo = input("\nΔιάλεξε επίπεδο (Α, Β, Γ): ").upper()
+    return epipedo
+
+
+# Questions 
+def ask_question(num1, num2, praxi):             
+    if praxi == "+":
+        correct = num1 + num2
+
+    elif praxi == "-":
+        if num1 < num2:
+            num1, num2 = num2, num1
+        correct = num1 - num2
+
+    elif praxi == "*":
+        correct = num1 * num2
+
+    answer = int(input(f"Γράψε πόσο κάνει {num1} {praxi} {num2}: "))
+    return answer == correct, correct 
+
+
+# Chooce operation, rounds questions, correct answer, score
+def choose_operation():                                            # Maybe to make it different function or use something else for better stucture code 
     while True:
         score = 0
         print("\n--- Επιλογή Πράξης ---")
@@ -60,8 +90,8 @@ def choose_operation():
         elif epilogi == "3":
             praxi = "*"
         elif epilogi == "4":
-             print("Έξοδος...")
-             return 
+             print("Έξοδος...")       # Doesnt exit, show main menu again, maybe because of while true
+             break
         else:
             print("Άκυρη επιλογή. Παρακαλώ δοκίμασε ξανά (1-4).")
             continue
@@ -78,9 +108,10 @@ def choose_operation():
                 num1 = random.randint(1,20)
                 num2 = random.randint(1,20)
             elif epipedo == "Γ":
-                countdown(60)
-                num1 = random.randint(1,20)
-                num2 = random.randint(1,20)
+                print("Έχεις 10 δευτερόλεπτα!")
+                countdown(10)
+                num1 = random.randint(1, 20)
+                num2 = random.randint(1, 20)
             else:
                 print("Άκυρη επιλογή επιπέδου!")
                 break
@@ -93,115 +124,7 @@ def choose_operation():
             else:
                 print(f"❌ Λάθος! Η σωστή απάντηση είναι: {correct}")
         
-                print(f"\n⭐ Η τελική σου βαθμολογία είναι: {score}/10")
-
-def ask_question(num1, num2, praxi):             # Συνάρτηση πράξεων για αποφυγή επαναλήψεων
-    if praxi == "+":
-        correct = num1 + num2
-
-    elif praxi == "-":
-        if num1 < num2:
-            num1, num2 = num2, num1
-        correct = num1 - num2
-
-    elif praxi == "*":
-        correct = num1 * num2
-
-    answer = int(input(f"Γράψε πόσο κάνει {num1} {praxi} {num2}: "))
-    return answer == correct, correct 
-        
-   
-
-def choose_level():
-    print("\n--- Επιλογή Επίπεδου ---")
-    print("Α) Επίπεδο: Εύκολο")
-    print("Β) Επίπεδο: Μέτριο")
-    print("Γ) Επίπεδο: Δύσκολο")
-    epipedo = input("\nΔιάλεξε επίπεδο (Α, Β, Γ): ").upper()          # .upper() για να δέχεται και μικρά                 
-    return epipedo
-
-
-
-#def first_choice(epilogi):
-    if epilogi == "1":
-        print("\n--- Ας προσθέσουμε! ---")
-        epipedo = choose_level()
-        for i in range(1, 11):
-             if epipedo == "Α":
-                 num1, num2 = random.randint(1, 10), random.randint(1, 10)
-                 print(f"Γύρος: {i}/1")
-                 ask_question(num1, num2, "+")
-             elif epipedo == "Β":
-                num1, num2 = random.randint(1, 20), random.randint(1, 20)
-                print(f"Γύρος: {i}/1")
-                ask_question(num1, num2, "+")
-             elif epipedo == "Γ":
-                countdown (60)
-                num1, num2 = random.randint(1, 20), random.randint(1, 20)
-                print(f"Γύρος: {i}/10 — Έχεις 60 δευτερόλεπτα!")
-                ask_question(num1, num2, "+")
-             else:
-                print("Άκυρη επιλογή!")
-                break
-   
-                           
-
-            
-#def second_choice(epilogi):
-    if epilogi == "2":
-        print("\n--- Ας αφαιρέσουμε! ---")
-        epipedo = choose_level()
-        if num1 < num2:
-                num1, num2 = num2, num1
-        for i in range(1, 11):
-             if epipedo == "Α":
-                 num1, num2 = random.randint(1, 10), random.randint(1, 10)
-                 print(f"Γύρος: {i}/1")
-                 ask_question(num1, num2,"-")
-             elif epipedo == "Β":
-                num1, num2 = random.randint(1, 20), random.randint(1, 20)
-                print(f"Γύρος: {i}/1")
-                ask_question(num1, num2, "-")
-             elif epipedo == "Γ":
-                countdown (60)
-                num1, num2 = random.randint(1, 20), random.randint(1, 20)
-                print(f"Γύρος: {i}/10 — Έχεις 60 δευτερόλεπτα!")
-                ask_question(num1, num2, "-")
-             else:
-                print("Άκυρη επιλογή!")
-                break    
-
-
-
-#def third_choice(epilogi):
-    if epilogi == "3":
-        print("\n--- Ας πολλαπλασιάσουμε! ---")
-        epipedo = choose_level()
-        for i in range(1, 11):
-            if epipedo == "Α":
-                num1 = random.randint(1, 10)
-                num2 = random.randint(1, 10)
-                ask_question (num1, num2, "*")
-            elif epipedo=="Β":
-                num1 = random.randint(1, 20)
-                num2 = random.randint(1, 20)
-                ask_question (num1, num2, "*")
-            elif epipedo == "Γ":
-                countdown (60)
-                num1, num2 = random.randint(1, 20), random.randint(1, 20)
-                print(f"Γύρος: {i}/10 — Έχεις 60 δευτερόλεπτα!")
-                ask_question(num1, num2, "*")
-            else:
-                print("Άκυρη επιλογή!")
-                break
-    if epilogi in ["1", "2", "3"]:
-        print(f"\n⭐ Η τελική σου βαθμολογία είναι: {score}/10")
-      
-    elif epilogi == "4":
-        print("Ευχαριστώ που παίξαμε! Τα ξαναλέμε!")    # Σταματάει το loop και κλείνει το πρόγραμμα  check                                            
-    elif epilogi not in ["1","2","3","4"]:
-        print("Χμμ, δεν κατάλαβα... Διάλεξε 1, 2, 3 ή 4")
-
+                print(f"\n⭐ Η τελική σου βαθμολογία είναι: {score}/10\n")
 
                
 print("\n-------------------------------------")
